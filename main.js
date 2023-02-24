@@ -1,26 +1,29 @@
 const  suma  =  ( num1 ,  num2 )  =>  num1  +  num2 ;
 const  resta  =  ( num1 ,  num2 )  =>  num1  -  num2 ;
-const  envio  =  ( envio )  =>  100 ;
+const  envio  =  ( envio )  =>  500 ;
 
-let  precioProducto  =  parseInt ( prompt ( "Ingrese el monto de compra" ) ) ;
-let  descuento  =  parseInt ( prompt ( "Ingrese el boucher de descuento" ) ) ;
+
+
+let  precioProducto =  parseInt ( prompt ( "Ingrese el monto de compra" ) ) ;
+if(precioProducto >= 1000){
+  alert("Usted tiene una bonificacion");
+}
+else if(precioProducto <= 1000){
+  alert("Usted tiene envío gratis")
+}
+let  tiketDescuento = parseInt ( prompt ("Ingrese el codigo de su tiket"));
+let  descuentoCompra  =  parseInt ( prompt ( "Ingrese su descuento" ) ) ;
 let  totalEnvio  =  envio ( envio ) ;
 let  sumaConEnvio  =  suma ( precioProducto ,  totalEnvio ) ;
 
-let  nuevoPrecio  =  resta ( sumaConEnvio ,  descuento ) ;
-                // = resta(suma(1000, iva(1000)), 100);
-                // = resta(suma(1000, 210), 100);
-                // = resto(1210, 100);
-                // = 1110
+let  nuevoPrecio  =  resta ( sumaConEnvio ,  descuentoCompra ) ;
 
 let  mensaje  =  `Total con envio ${ nuevoPrecio } ` ;
 alert ( mensaje ) ;
 
 
-// for (let entrada = 1; entrada <= 4; entrada++){
-//     let nombre = prompt ("Ingrese Patente");
-
-//     alert(`Turno #${entrada} Patente: ${nombre}`);
-// }
-
-//     alert ("Turnos agotados");
+for (let entrada = 1; entrada <= 2; entrada++){
+    let nombre = prompt ("Ingrese patente de vehículo a lavar");
+    alert(`Turno #${entrada} Patente: ${nombre}`);
+}
+    alert ("Turnos de lavados agotados");
