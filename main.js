@@ -55,7 +55,7 @@ let precio = parseInt(prompt("Ingrese su saldo"));
 
 let filtrados = productos.filter((item) => item.precio > precio);
 
-alert("Usted puede comprar únicame los siguientes productos")
+alert("Saldo insuficiente para los siguientes productos")
 
 filtrados.forEach((item) => {
   let mensaje = `
