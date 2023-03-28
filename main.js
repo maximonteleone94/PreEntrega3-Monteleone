@@ -1,3 +1,4 @@
+//PRIMER ENTREGA
 // const  suma  =  ( num1 ,  num2 )  =>  num1  +  num2 ;
 // const  resta  =  ( num1 ,  num2 )  =>  num1  -  num2 ;
 
@@ -21,48 +22,213 @@
 
 //     alert ("Turnos de lavados agotados");
 
+//SEGUNDA ENTREGA
+// let productos = [
+//   { codigo: 1, nombre: "shampoo", precio: 990 },
+//   { codigo: 2, nombre: "cera", precio: 850 },
+//   { codigo: 3, nombre: "silicona", precio: 3500 },
+//   { codigo: 4, nombre: "acondicionador", precio: 2000 }, 
+//   { codigo: 5, nombre: "limpia cristales", precio: 700 },
+//   { codigo: 6, nombre: "restaurador", precio: 1900 },
+// ];
 
-let productos = [
-  { codigo: 1, nombre: "shampoo", precio: 990 },
-  { codigo: 2, nombre: "cera", precio: 850 },
-  { codigo: 3, nombre: "silicona", precio: 3500 },
-  { codigo: 4, nombre: "acondicionador", precio: 2000 }, 
-  { codigo: 5, nombre: "limpia cristales", precio: 700 },
-  { codigo: 6, nombre: "restaurador", precio: 1900 },
+// productos.forEach(producto => { 
+//   console.log(producto.nombre);
+// });
+
+// let nombre = prompt("Ingrese lo que desea comprar");
+
+// let producto = productos.find(item => item.nombre === nombre); 
+
+// let mensaje = `
+//   Codigo: ${producto.codigo}
+//   Nombre: ${producto.nombre}
+//   Precio: $${producto.precio}
+// `;
+
+// alert(mensaje);
+
+// if(producto.precio >= 1000){
+//   alert("Usted tiene una bonificacion");
+// }
+
+// let precio = parseInt(prompt("Ingrese su saldo"));
+
+// let filtrados = productos.filter((item) => item.precio > precio);
+
+// alert("Saldo insuficiente para los siguientes productos")
+
+// filtrados.forEach((item) => {
+//   let mensaje = `
+//     Codigo: ${item.codigo}
+//     Nombre: ${item.nombre}
+//     Precio: $${item.precio}
+//   `;
+
+//   alert(mensaje);
+// });
+
+//TERCER ENTREGA
+const baseDeDatos = [
+  {
+      id: 1,
+      nombre: 'Shampoo',
+      precio: 1100,
+      imagen: "../productos/shampo.webp"
+  },
+  {
+      id: 2,
+      nombre: 'Shampoo Wax',
+      precio: 1300,
+      imagen: "../productos/sampoowax.webp"
+  },
+  {
+      id: 3,
+      nombre: 'Espuma Activa',
+      precio: 1500,
+      imagen: "../productos/foam.webp"
+  },
+  {
+      id: 4,
+      nombre: 'Perfumes',
+      precio: 550,
+      imagen: "../productos/perfumes.webp"
+  },
+  {
+    id: 5,
+    nombre: 'APC',
+    precio: 1100,
+    imagen: "../productos/apc.webp"
+},
+{
+    id: 6,
+    nombre: 'Carnauba Wax',
+    precio: 2000,
+    imagen: "../productos/carnauba.webp"
+},
+{
+    id: 7,
+    nombre: 'Acondicionador De Interiores',
+    precio: 2100,
+    imagen: "../productos/gloss.webp"
+},
+{
+    id: 8,
+    nombre: 'Acondicionador De Cubiertas',
+    precio: 3800,
+    imagen: "../productos/extreme.webp"
+}
 ];
 
-productos.forEach(producto => { 
-  console.log(producto.nombre);
-});
+let carrito = [];
+const divisa = '$';
+const DOMitems = document.querySelector('#items');
+const DOMcarrito = document.querySelector('#carrito');
+const DOMtotal = document.querySelector('#total');
+const DOMbotonVaciar = document.querySelector('#boton-vaciar');
 
-let nombre = prompt("Ingrese lo que desea comprar");
-
-let producto = productos.find(item => item.nombre === nombre); 
-
-let mensaje = `
-  Codigo: ${producto.codigo}
-  Nombre: ${producto.nombre}
-  Precio: $${producto.precio}
-`;
-
-alert(mensaje);
-
-if(producto.precio >= 1000){
-  alert("Usted tiene una bonificacion");
+function renderizarProductos() {
+  baseDeDatos.forEach((info) => {
+// Estructura
+      const miNodo = document.createElement('div');
+      miNodo.classList.add("card", "bc-t", "border-dark");
+// Body
+      const miNodoCardBody = document.createElement('div');
+      miNodoCardBody.classList.add('card-body');
+// Titulo
+      const miNodoTitle = document.createElement('h5');
+      miNodoTitle.classList.add('card-title');
+      miNodoTitle.textContent = info.nombre;
+// Imagen
+      const miNodoImagen = document.createElement('img');
+      miNodoImagen.classList.add('img-fluid');
+      miNodoImagen.setAttribute('src', info.imagen);
+// Precio
+      const miNodoPrecio = document.createElement('p');
+      miNodoPrecio.classList.add('card-text');
+      miNodoPrecio.textContent = `${info.precio}${divisa}`;
+// Boton 
+      const miNodoBoton = document.createElement('button');
+      miNodoBoton.classList.add('btn', 'btn-c');
+      miNodoBoton.textContent = 'Comprar';
+      miNodoBoton.setAttribute('marcador', info.id);
+      miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
+// Insertamos
+      miNodoCardBody.appendChild(miNodoImagen);
+      miNodoCardBody.appendChild(miNodoTitle);
+      miNodoCardBody.appendChild(miNodoPrecio);
+      miNodoCardBody.appendChild(miNodoBoton);
+      miNodo.appendChild(miNodoCardBody);
+      DOMitems.appendChild(miNodo);
+  });
 }
 
-let precio = parseInt(prompt("Ingrese su saldo"));
+//Evento para añadir un producto al carrito de la compra
+function anyadirProductoAlCarrito(evento) {
+  // Anyadimos el Nodo a nuestro carrito
+  carrito.push(evento.target.getAttribute('marcador'))
+  // Actualizamos el carrito 
+  renderizarCarrito();
+}
 
-let filtrados = productos.filter((item) => item.precio > precio);
+//Productos guardados en el carrito
+function renderizarCarrito() {
+  DOMcarrito.textContent = '';
+  const carritoSinDuplicados = [...new Set(carrito)];
+  carritoSinDuplicados.forEach((item) => {
+      const miItem = baseDeDatos.filter((itemBaseDatos) => {
+        
+          return itemBaseDatos.id === parseInt(item);
+      });
+      const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+          return itemId === item ? total += 1 : total;
+      }, 0);
+// Nodo del item del carrito
+      const miNodo = document.createElement('li');
+      miNodo.classList.add('list-group-item', 'text-center', 'mx-2', "bg-e");
+      miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}${divisa}`;
+// Boton de borrar
+      const miBoton = document.createElement('button');
+      miBoton.classList.add('btn', 'btn-c', 'mx-5');
+      miBoton.textContent = 'X';
+      miBoton.style.marginLeft = '1rem';
+      miBoton.dataset.item = item;
+      miBoton.addEventListener('click', borrarItemCarrito);
+      miNodo.appendChild(miBoton);
+      DOMcarrito.appendChild(miNodo);
+  });
+  DOMtotal.textContent = calcularTotal();
+}
 
-alert("Saldo insuficiente para los siguientes productos")
+//Evento para borrar un elemento del carrito
+function borrarItemCarrito(evento) {
+  const id = evento.target.dataset.item;
+  carrito = carrito.filter((carritoId) => {
+      return carritoId !== id;
+  });
+  renderizarCarrito();
+}
 
-filtrados.forEach((item) => {
-  let mensaje = `
-    Codigo: ${item.codigo}
-    Nombre: ${item.nombre}
-    Precio: $${item.precio}
-  `;
+//Calcula el precio total teniendo en cuenta los productos repetidos
+function calcularTotal() {
+  return carrito.reduce((total, item) => {
+      const miItem = baseDeDatos.filter((itemBaseDatos) => {
+          return itemBaseDatos.id === parseInt(item);
+      });
+      return total + miItem[0].precio;
+  }, 0).toFixed(2);
+}
 
-  alert(mensaje);
-});
+
+//Varia el carrito y vuelve a dibujarlo
+function vaciarCarrito() {
+  carrito = [];
+  renderizarCarrito();
+}
+
+// Eventos
+DOMbotonVaciar.addEventListener('click', vaciarCarrito);
+
+// Inicio
+renderizarProductos();
+renderizarCarrito();
