@@ -68,7 +68,7 @@
 //   alert(mensaje);
 // });
 
-//TERCER ENTREGA
+//ENTREGA FINAL
 const baseDeDatos = [
   {
       id: 1,
@@ -127,6 +127,7 @@ const DOMcarrito = document.querySelector('#carrito');
 const DOMtotal = document.querySelector('#total');
 const DOMbotonVaciar = document.querySelector('#boton-vaciar');
 
+ 
 function renderizarProductos() {
   baseDeDatos.forEach((info) => {
 // Estructura
@@ -168,7 +169,8 @@ function anyadirProductoAlCarrito(evento) {
   // Anyadimos el Nodo a nuestro carrito
   carrito.push(evento.target.getAttribute('marcador'))
   // Actualizamos el carrito 
-  renderizarCarrito();
+  renderizarCarrito(); 
+  saveLocal();
 }
 
 //Productos guardados en el carrito
@@ -219,16 +221,25 @@ function calcularTotal() {
   }, 0).toFixed(2);
 }
 
-
 //Varia el carrito y vuelve a dibujarlo
 function vaciarCarrito() {
   carrito = [];
   renderizarCarrito();
-}
+  }
 
 // Eventos
 DOMbotonVaciar.addEventListener('click', vaciarCarrito);
 
+const saveLocal = () => {
+  localStorage.setItem("carrito", JSON.stringify(carrito))
+}
+
 // Inicio
 renderizarProductos();
 renderizarCarrito();
+
+fetch("https://pokeapi.co/api/v2/pokemon/ditto")
+ .then(res => res.json())
+ .then(Response => {
+  console.log(Response)
+ })

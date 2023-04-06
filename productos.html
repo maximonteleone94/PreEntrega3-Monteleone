@@ -36,6 +36,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="../pages/contacto.html">Contacto</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link"><button class="btn-c" id="btn-c" data-bs-target="#shopCartMenu" data-bs-toggle="offcanvas" aria-controls="shopCartMenu"><i class="fa-solid fa-cart-shopping icon"></i><span id="numShopCart"></span>🛒</button></a>
+              </li>
             </ul>
           </div>
         </div>
@@ -43,6 +46,26 @@
 
 <header>
 
+    <div id="shopCartMenu" class="offcanvas offcanvas-end bc-t ovr-f">
+        <div class="offcanvas-header">
+            <h5 id="carrito" class="list-group"></h5>
+            <p class="text-center">Total: <span id="total"></span>$</p>
+            <button id="boton-vaciar" class="btn btn-c">Vaciar</button>
+          </aside>
+          </div>
+
+        <div id="menuFooter" class="offcanvas-footer">
+            <div id="price"></div>
+        </div>
+        <div>
+        <li class="nav-item" >
+          <a href="./contacto.html">
+          <button class="btn btn-c">Comprar</button>
+        </a>
+        </li>
+        </div>
+    </div>
+    
     <h1>PRODUCTOS</h1>
     <h2 class="m-t-4">Trabajamos toda la linea Taurus Detailing Store</h2>
  <section class="d-flex justify-content-space m-50"> 
@@ -60,21 +83,8 @@
 </section>
 </header>
 
-
-
-    
-<!-- Carrito -->
-  <aside class="col-sm-12  text-center" >
-    <h2>Carrito</h2>
-<!-- Elementos del carrito -->
-    <ul id="carrito" class="list-group"></ul>
-    <hr>
-<!-- Precio total -->
-    <p class="text-center">Total: <span id="total"></span>$;</p>
-    <button id="boton-vaciar" class="btn btn-c">Vaciar</button>
-  </aside>
 <!-- Elementos generados a partir del JSON -->
-      <div class="container-fluid">
+  <div class="container-fluid">
       <div class="row py-2 text-center">
           <main id="items" class="col-sm-12 col-md-5 col-lg-3"></main>
       </div>
