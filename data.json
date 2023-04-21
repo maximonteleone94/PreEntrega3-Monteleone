@@ -6,5 +6,5 @@
  {"id": 5 , "nombre": "APC" , "precio": 1100 , "img":"../productos/apc.webp"},  
  {"id": 6 , "nombre": "Carnauba Wax" , "precio": 2000 , "img":"../productos/carnauba.webp" }, 
  {"id": 7 , "nombre": "Acondicionador De Interiores" , "precio": 2100 , "img":"../productos/gloss.webp" },  
- {"id": 8 , "nombre": "Acondicionador De Cubiertas" , "precio": 3800 , "img":"../productos/extreme.webp" }, 
+ {"id": 8 , "nombre": "Acondicionador De Cubiertas" , "precio": 3800 , "img":"../productos/extreme.webp" } 
 ]
