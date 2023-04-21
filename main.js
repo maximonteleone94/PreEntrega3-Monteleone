@@ -69,6 +69,7 @@
 // });
 
 //ENTREGA FINAL
+
 const baseDeDatos = [
   {
       id: 1,
@@ -119,6 +120,13 @@ const baseDeDatos = [
     imagen: "../productos/extreme.webp"
 }
 ];
+
+let listado = document.getElementById("listado");
+fetch("./data.json")
+.then(Response => Response.json())
+.then(data => {
+  console.log(data);
+})
 
 let carrito = [];
 const divisa = '$';
@@ -238,8 +246,4 @@ const saveLocal = () => {
 renderizarProductos();
 renderizarCarrito();
 
-fetch("https://pokeapi.co/api/v2/pokemon/ditto")
- .then(res => res.json())
- .then(Response => {
-  console.log(Response)
- })
+
