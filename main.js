@@ -69,65 +69,56 @@
 // });
 
 //ENTREGA FINAL
-
 const baseDeDatos = [
   {
       id: 1,
       nombre: 'Shampoo',
       precio: 1100,
-      imagen: "../productos/shampo.webp"
+      imagen: "imagenes/shampo.webp"
   },
   {
       id: 2,
       nombre: 'Shampoo Wax',
       precio: 1300,
-      imagen: "../productos/sampoowax.webp"
+      imagen: "imagenes/sampoowax.webp"
   },
   {
       id: 3,
       nombre: 'Espuma Activa',
       precio: 1500,
-      imagen: "../productos/foam.webp"
+      imagen: "imagenes/foam.webp"
   },
   {
       id: 4,
       nombre: 'Perfumes',
       precio: 550,
-      imagen: "../productos/perfumes.webp"
+      imagen: "imagenes/perfumes.webp"
   },
   {
     id: 5,
     nombre: 'APC',
     precio: 1100,
-    imagen: "../productos/apc.webp"
+    imagen: "imagenes/apc.webp"
 },
 {
     id: 6,
     nombre: 'Carnauba Wax',
     precio: 2000,
-    imagen: "../productos/carnauba.webp"
+    imagen: "imagenes/carnauba.webp"
 },
 {
     id: 7,
     nombre: 'Acondicionador De Interiores',
     precio: 2100,
-    imagen: "../productos/gloss.webp"
+    imagen: "imagenes/gloss.webp"
 },
 {
     id: 8,
     nombre: 'Acondicionador De Cubiertas',
     precio: 3800,
-    imagen: "../productos/extreme.webp"
+    imagen: "imagenes/extreme.webp"
 }
 ];
-
-let listado = document.getElementById("listado");
-fetch("./data.json")
-.then(Response => Response.json())
-.then(data => {
-  console.log(data);
-  
-})
 
 let carrito = [];
 const divisa = '$';
@@ -138,6 +129,9 @@ const DOMbotonVaciar = document.querySelector('#boton-vaciar');
 
  
 function renderizarProductos() {
+  
+  console.log(baseDeDatos);
+
   baseDeDatos.forEach((info) => {
 // Estructura
       const miNodo = document.createElement('div');
@@ -176,16 +170,26 @@ function renderizarProductos() {
 //Evento para añadir un producto al carrito de la compra
 function anyadirProductoAlCarrito(evento) {
   // Anyadimos el Nodo a nuestro carrito
-  carrito.push(evento.target.getAttribute('marcador'))
+  
+  let estadoCarrito = carrito.push(evento.target.getAttribute('marcador'))
   // Actualizamos el carrito 
   renderizarCarrito(); 
   saveLocal();
+  console.log("EstadoCarrito => "+estadoCarrito);
+  console.log("Carrito => "+carrito);
+
 }
+
+const recuperarCarritoLocalStorage = () => {
+  return JSON.parse(localStorage.getItem("carrito"));
+};
 
 //Productos guardados en el carrito
 function renderizarCarrito() {
+  carritoGuardado = recuperarCarritoLocalStorage();
+  console.log ("carritoGuardado => "+carritoGuardado);
   DOMcarrito.textContent = '';
-  const carritoSinDuplicados = [...new Set(carrito)];
+  const carritoSinDuplicados = [...new Set(carritoGuardado)];
   carritoSinDuplicados.forEach((item) => {
       const miItem = baseDeDatos.filter((itemBaseDatos) => {
         
@@ -246,5 +250,3 @@ const saveLocal = () => {
 // Inicio
 renderizarProductos();
 renderizarCarrito();
-
-
