@@ -177,7 +177,6 @@ function anyadirProductoAlCarrito(evento) {
   saveLocal();
   console.log("EstadoCarrito => "+estadoCarrito);
   console.log("Carrito => "+carrito);
-
 }
 
 const recuperarCarritoLocalStorage = () => {
@@ -246,6 +245,13 @@ DOMbotonVaciar.addEventListener('click', vaciarCarrito);
 const saveLocal = () => {
   localStorage.setItem("carrito", JSON.stringify(carrito))
 }
+
+let listado = document.getElementById("listado");
+fetch("./data.json")
+.then(response => response.json())
+.then(data => {
+  console.log(data);
+})
 
 // Inicio
 renderizarProductos();
