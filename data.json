@@ -1,10 +1,44 @@
 [
- {"id": 1 , "nombre": "Shampoo", "precio": 1100 },  
- {"id": 2 , "nombre": "Shampoo Wax" , "precio": 1300 }, 
- {"id": 3 , "nombre": "Espuma Activa" , "precio": 1500 },  
- {"id": 4 , "nombre": "Perfumes" , "precio": 550 },
- {"id": 5 , "nombre": "APC" , "precio": 1100 },  
- {"id": 6 , "nombre": "Carnauba Wax" , "precio": 2000 }, 
- {"id": 7 , "nombre": "Acondicionador De Interiores" , "precio": 2100 },  
- {"id": 8 , "nombre": "Acondicionador De Cubiertas" , "precio": 3800 } 
+ {"id": 1 ,
+   "nombre": "Shampoo",
+   "precio": 1100,
+   "img": "imagenes/shampo.webp",
+   "cantidad":1
+ },  
+
+ {"id": 2 ,
+  "nombre": "Shampoo Wax" ,
+  "precio": 1300,
+  "img":"imagenes/sampoowax.webp",
+  "cantidad":1
+}, 
+
+ {"id": 3 ,
+   "nombre": "Espuma Activa" ,
+   "precio": 1500,
+   "img":"imagenes/foam.webp",
+   "cantidad":1
+},  
+
+ {"id": 4 ,
+   "nombre": "Perfumes" ,
+   "precio": 550,
+   "img":"imagenes/perfumes.webp",
+   "cantidad":1
+},
+
+ {"id": 5 ,
+   "nombre": "APC" ,
+   "precio": 1100,
+   "img":"imagenes/apc.webp",
+   "cantidad":1
+},  
+
+ {"id": 6 ,
+   "nombre": "Carnauba Wax" ,
+   "precio": 2000,
+   "img":"imagenes/carnauba.webp",
+   "cantidad":1
+}
+
 ]
